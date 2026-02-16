@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L&D neu denken – Christina Stehr</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #FFFFFF;
+      --bg: #F8F9FB;
+      --bg-alt: #F0F2F5;
+      --text: #1A1A2E;
+      --text-secondary: #5A5E6B;
+      --text-muted: #8B8FA3;
+      --accent: #2563EB;
+      --accent-light: #DBEAFE;
+      --accent-dark: #1E40AF;
+      --green: #059669;
+      --green-light: #D1FAE5;
+      --orange: #D97706;
+      --orange-light: #FEF3C7;
+      --purple: #7C3AED;
+      --purple-light: #EDE9FE;
+      --rose: #E11D48;
+      --rose-light: #FFE4E6;
+      --border: #E2E5EB;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === LAYOUT === */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: var(--bg); }
+
+    /* === TYPOGRAPHY === */
+    h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.4rem; }
+    .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .subtitle { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.55; max-width: 640px; }
+    .muted { color: var(--text-muted); }
+
+    /* === HERO === */
+    .hero {
+      padding: 6rem 0 5rem;
+      background: linear-gradient(170deg, #F0F4FF 0%, var(--white) 50%);
+    }
+    .hero h1 { margin-bottom: 1.5rem; }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle { margin-bottom: 2.5rem; font-size: 1.2rem; }
+
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.9rem; font-weight: 500; color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .hero-pill .dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    .hero-author {
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem; color: var(--text-muted);
+    }
+    .hero-author strong { color: var(--text); font-weight: 600; }
+
+    /* === PROBLEM SECTION === */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .problem-card {
+      padding: 1.75rem;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+    .problem-card .icon-circle {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .problem-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55; }
+
+    /* === APPROACH / WIRKMODELL === */
+    .flow {
+      display: flex; align-items: stretch; gap: 0;
+      margin-top: 2.5rem;
+      overflow-x: auto;
+    }
+    .flow-step {
+      flex: 1; min-width: 160px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+    }
+    .flow-step + .flow-step { margin-left: 1rem; }
+    .flow-arrow {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; flex-shrink: 0; color: var(--accent); font-size: 1.2rem; font-weight: 700;
+    }
+    .flow-step .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      font-size: 0.75rem; font-weight: 700; color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .flow-step h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .flow-step p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* Agent cards */
+    .agent-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .agent-card {
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid;
+      background: var(--white);
+      box-shadow: var(--card-shadow);
+    }
+    .agent-card h3 { font-size: 0.95rem; }
+    .agent-card p { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+    /* === LERNPHILOSOPHIE (comparison) === */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .compare-col {
+      padding: 2rem;
+      border-radius: 12px;
+    }
+    .compare-col.old {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+    }
+    .compare-col.new {
+      background: var(--accent-light);
+      border: 1px solid #BFDBFE;
+    }
+    .compare-col h3 {
+      font-size: 1rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .compare-col ul {
+      list-style: none; padding: 0;
+    }
+    .compare-col li {
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .compare-col li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      margin-top: 0.5rem; flex-shrink: 0;
+    }
+    .compare-col.old li::before { background: var(--text-muted); }
+    .compare-col.new li::before { background: var(--accent); }
+    .compare-col.new li { color: var(--text); }
+
+    .ref-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* === QUESTIONS / AI-FIRST === */
+    .questions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .question-card {
+      padding: 1.75rem;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+    .question-card .q-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .question-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .question-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* === CTA === */
+    .cta-section {
+      padding: 5rem 0;
+      text-align: center;
+      background: linear-gradient(170deg, var(--white) 0%, #F0F4FF 100%);
+    }
+    .cta-section h2 { margin-bottom: 0.75rem; }
+    .cta-section .subtitle { margin: 0 auto 2rem; text-align: center; }
+    .cta-button {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 1rem; font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-button:hover { background: var(--accent-dark); }
+    .cta-name {
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .cta-name strong { color: var(--text); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .container { padding: 0 1.25rem; }
+      section { padding: 3.5rem 0; }
+      .hero { padding: 4rem 0 3.5rem; }
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); width: auto; height: 28px; }
+      .flow-step + .flow-step { margin-left: 0; }
+      .agent-row { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .questions-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="label">L&D im KI-Zeitalter</div>
+      <h1>Ich baue <span>lernfähige<br>Unternehmen.</span></h1>
+      <p class="subtitle">
+        Mein Ansatz verbindet Businessstrategie, KI-Infrastruktur und Learning Design
+        zu einem integrierten System – das Wertschöpfung steigert, Menschen befähigt
+        und heute startklar ist.
+      </p>
+
+      <div class="hero-pills">
+        <div class="hero-pill"><div class="dot" style="background:var(--accent)"></div>Wertschöpfung messbar steigern</div>
+        <div class="hero-pill"><div class="dot" style="background:var(--green)"></div>Mitarbeitende befähigen statt ersetzen</div>
+        <div class="hero-pill"><div class="dot" style="background:var(--purple)"></div>Datenschutz &amp; Ethik strukturell integriert</div>
+      </div>
+
+      <div class="hero-author">
+        <strong>Christina Stehr</strong> · L&D Strategin · AI-First Denkerin
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DAS PROBLEM ========== -->
+  <section>
+    <div class="container">
+      <div class="label">Das Problem</div>
+      <h2>Warum klassisches L&D nicht mehr reicht</h2>
+      <p class="subtitle">Unternehmen verlieren Produktivität und Geschwindigkeit – weil Lernen nicht mit der Wertschöpfungslogik verbunden ist und KI ohne kulturelle Einbettung eingeführt wird.</p>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="icon-circle" style="background:var(--rose-light); color:var(--rose);">✕</div>
+          <h3>L&D arbeitet reaktiv</h3>
+          <p>Seminarkataloge statt strategischer Kompetenzarchitektur. Trainings entstehen aus Einzelanfragen – nicht aus der Unternehmensstrategie.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon-circle" style="background:var(--orange-light); color:var(--orange);">⚡</div>
+          <h3>KI erzeugt Reibung statt Fortschritt</h3>
+          <p>KI wird technisch eingeführt, aber ohne didaktische und kulturelle Begleitung. Das Ergebnis: Schatten-KI, Unsicherheit und ungenutztes Potenzial.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon-circle" style="background:var(--purple-light); color:var(--purple);">⏳</div>
+          <h3>Die Kompetenzlücke wächst</h3>
+          <p>Der Kompetenzfokus verschiebt sich rasant – Urteilskraft, Kollaboration mit KI, Ethik. Klassische Weiterbildung kommt nicht hinterher.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WIRKMODELL / ANSATZ ========== -->
+  <section>
+    <div class="container">
+      <div class="label">Mein Ansatz</div>
+      <h2>Transformationsarchitektur statt Trainingsabteilung</h2>
+      <p class="subtitle">Ein integriertes System, das Strategie, KI-Infrastruktur und Lernen miteinander verbindet – und messbaren Business Impact erzeugt.</p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num" style="background:var(--accent)">1</div>
+          <h3>Business-Strategie</h3>
+          <p>Strategische Ziele identifizieren, Werttreiber ableiten</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="step-num" style="background:var(--green)">2</div>
+          <h3>KI-Infrastruktur</h3>
+          <p>Agenten aufsetzen, Governance &amp; Datenschutz sichern</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="step-num" style="background:var(--purple)">3</div>
+          <h3>Kompetenz-Architektur</h3>
+          <p>Rollenbasierte Skills, KI-Kollaboration, Urteilskraft</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="step-num" style="background:var(--orange)">4</div>
+          <h3>Value Creation Learning</h3>
+          <p>Lernen an realen Business-Cases, messbarer Output</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="step-num" style="background:var(--rose)">5</div>
+          <h3>Business Impact</h3>
+          <p>KPIs, Feedback-Loop, kontinuierliche Anpassung</p>
+        </div>
+      </div>
+
+      <!-- Agenten-Ansatz -->
+      <div style="margin-top: 3rem;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 0.3rem;">KI-Agenten als Produktivitätssystem</h3>
+        <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem;">Statt einer generischen KI-Schulung: spezialisierte Agenten, die kontrolliert auf interne Daten zugreifen – mit Pseudonymisierung, Governance und klarer Zweckbindung.</p>
+      </div>
+      <div class="agent-row">
+        <div class="agent-card" style="border-color: var(--accent);">
+          <h3>Phase 1 · Wissensassistent</h3>
+          <p>Internes Wissen intelligent abfragen. Schnelleres Onboarding, weniger Silodenken. Heute umsetzbar.</p>
+        </div>
+        <div class="agent-card" style="border-color: var(--green);">
+          <h3>Phase 2 · Rollenbasierte Agenten</h3>
+          <p>HR-Agent für Skill-Analysen, Projekt-Agent für Lessons Learned – mit kontrolliertem Datenzugriff.</p>
+        </div>
+        <div class="agent-card" style="border-color: var(--purple);">
+          <h3>Phase 3 · Prozessintegrierte Agenten</h3>
+          <p>KI direkt in Arbeitsprozesse eingebettet. Automatisierte Workflows mit menschlicher Freigabe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LERNPHILOSOPHIE ========== -->
+  <section>
+    <div class="container">
+      <div class="label">Lernphilosophie</div>
+      <h2>Wenn KI schneller denkt, muss der Mensch besser urteilen</h2>
+      <p class="subtitle">KI übernimmt operative Aufgaben. Der Kompetenzfokus verschiebt sich. Mein Learning Design setzt genau dort an.</p>
+
+      <div class="compare-grid">
+        <div class="compare-col old">
+          <h3><span style="font-size:1.1rem;">⊘</span> Klassisches L&D</h3>
+          <ul>
+            <li>Seminaranbieter und Trainerkatalog</li>
+            <li>Content Delivery und Konsumhaltung</li>
+            <li>Isolierte Schulungen ohne Businessbezug</li>
+            <li>Tool-Demos und Prompt-Engineering-Kurse</li>
+            <li>Evaluation als Zufriedenheitsfragebogen</li>
+          </ul>
+        </div>
+        <div class="compare-col new">
+          <h3><span style="font-size:1.1rem;">◉</span> Mein Ansatz</h3>
+          <ul>
+            <li>Lernbegleiter, Coaches und Peer-Gruppen</li>
+            <li>Co-Creation und Selbstverantwortung</li>
+            <li>Lernen an realen Business-Herausforderungen</li>
+            <li>Systemfähigkeit, Urteilskraft und Ethik</li>
+            <li>Messbarer Business Impact als Feedback-Loop</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ref-note">
+        Inspiriert von New Learning Ansätzen nach Jan Foelsing und der strategischen PE-Perspektive von Prof. Anja Schmitz – erweitert um KI-Infrastruktur, Governance und Wertschöpfungslogik.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AI-FIRST FRAGEN ========== -->
+  <section>
+    <div class="container">
+      <div class="label">AI-First Readiness</div>
+      <h2>Die richtigen Fragen stellen –<br>die richtigen Strukturen aufsetzen</h2>
+      <p class="subtitle">Bevor KI Wert erzeugt, braucht ein Unternehmen Klarheit. Diese vier Felder entscheiden, ob KI Spielerei bleibt oder strategischer Hebel wird.</p>
+
+      <div class="questions-grid">
+        <div class="question-card">
+          <div class="q-label" style="background:var(--accent-light); color:var(--accent);">Frage</div>
+          <h3>Welches KI-Zielbild haben wir?</h3>
+          <p>Wo erzeugt KI Wert? Welche Rollen verändern sich? Was liegt bei 100% beim Menschen, was übernimmt KI, was wird neu möglich?</p>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+            <div class="q-label" style="background:var(--green-light); color:var(--green); margin-bottom:0.4rem;">Aufsetzen</div>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">AI-First Zielbild pro Rolle entwickeln. Strategische Ziele mit KI-Potenzialen abgleichen. Steering Committee einrichten.</p>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="q-label" style="background:var(--accent-light); color:var(--accent);">Frage</div>
+          <h3>Wie wird die Wissensbasis aufgebaut?</h3>
+          <p>Welchen Kontext braucht KI, um nicht generisch zu arbeiten? Unternehmens&shy;wissen, Prozesse, Rollen, Kommunikations&shy;stil – alles strukturiert dokumentiert?</p>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+            <div class="q-label" style="background:var(--green-light); color:var(--green); margin-bottom:0.4rem;">Aufsetzen</div>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">Kontextbasis aufbauen: Unternehmenswissen, SOPs und Prozesse für KI zugänglich machen. Datenschutzkonform mit Pseudonymisierung und Governance.</p>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="q-label" style="background:var(--accent-light); color:var(--accent);">Frage</div>
+          <h3>Welche Skills sind jetzt entscheidend?</h3>
+          <p>Nicht nur „Prompting". Sondern: Urteilskraft unter Unsicherheit, Kollaboration mit KI, Ethikkompetenz, Problemdefinition, klare Briefings.</p>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+            <div class="q-label" style="background:var(--green-light); color:var(--green); margin-bottom:0.4rem;">Aufsetzen</div>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">Kompetenzarchitektur entwickeln: KI-Grundkompetenzen, rollenspezifische Fähigkeiten und Transformationskompetenzen – abgeleitet aus der Strategie.</p>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="q-label" style="background:var(--accent-light); color:var(--accent);">Frage</div>
+          <h3>Wie wird Lernen zur Wertschöpfung?</h3>
+          <p>Wie schaffen wir den Shift von Seminar-Konsum zu Value Creation Learning? Wie messen wir Business Impact statt Teilnehmer&shy;zufriedenheit?</p>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+            <div class="q-label" style="background:var(--green-light); color:var(--green); margin-bottom:0.4rem;">Aufsetzen</div>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">AI-First Routinen etablieren. Lernen in Arbeitsprozesse integrieren. Cross-funktionale Teams an realen Cases arbeiten lassen. KPIs definieren und Feedback-Loop schließen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="label">Nächster Schritt</div>
+      <h2>Bereit für L&D, das Wertschöpfung erzeugt?</h2>
+      <p class="subtitle">Ich denke L&D nicht als Seminarverwaltung – sondern als strategische Infrastruktur für das KI-Zeitalter. Lassen Sie uns darüber sprechen, wie das in Ihrem Unternehmen aussehen kann.</p>
+      <a href="mailto:vicky3christina@googlemail.com" class="cta-button">Gespräch vereinbaren →</a>
+      <div class="cta-name">
+        <strong>Christina Stehr</strong><br>
+        Systemarchitektin trifft People-Strategin
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
